@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  usermanagement_poc:
+    container_name: UserManagement_API
+    image: ${DOCKER_REGISTRY-}usermanagementpoc
+    build:
+      context: .
+      dockerfile: UserManagement_PoC/Dockerfile
+
+  postgresql_database:
+    container_name: Postgresql_Database
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=UserManagement
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data/
+
+  pgadmin:
+    container_name: Postgres_Admin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin@admin.org
+      - PGADMIN_DEFAULT_PASSWORD=password
+    ports:
+      - "5050:80"
+    restart: always
+    volumes:
+      - pgadmin:/root/.pgadmin
+
+volumes:
+  postgresql-data:
+  pgadmin:

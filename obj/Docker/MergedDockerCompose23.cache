@@ -1,0 +1,78 @@
+services:
+  pgadmin:
+    container_name: Postgres_Admin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@admin.org
+      PGADMIN_DEFAULT_PASSWORD: password
+    image: dpage/pgadmin4
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: 5050
+      protocol: tcp
+    restart: always
+    volumes:
+    - type: volume
+      source: pgadmin
+      target: /root/.pgadmin
+      volume: {}
+  postgresql_database:
+    container_name: Postgresql_Database
+    environment:
+      POSTGRES_DB: UserManagement
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: admin
+    image: postgres:latest
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 5432
+      published: 5432
+      protocol: tcp
+    restart: always
+    volumes:
+    - type: volume
+      source: postgresql-data
+      target: /var/lib/postgresql/data
+      volume: {}
+  usermanagement_poc:
+    build:
+      context: C:\Users\eiman\Desktop\coding\cSharp\UserManagement_PoC
+      dockerfile: UserManagement_PoC/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: usermanagementpoc
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 443
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\eiman\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\eiman\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose13563102673897207132_default
+volumes:
+  pgadmin:
+    name: dockercompose13563102673897207132_pgadmin
+  postgresql-data:
+    name: dockercompose13563102673897207132_postgresql-data

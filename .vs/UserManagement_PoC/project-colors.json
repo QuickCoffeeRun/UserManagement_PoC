@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5b9d756c-3f2d-47d5-9854-9334d76db65e": {
+      "ProjectGuid": "5b9d756c-3f2d-47d5-9854-9334d76db65e",
+      "DisplayName": "UserManagement_PoC",
+      "ColorIndex": 0
+    },
+    "c82001b3-a9f5-4cf9-bdff-fcffa57c1124": {
+      "ProjectGuid": "c82001b3-a9f5-4cf9-bdff-fcffa57c1124",
+      "DisplayName": "docker-compose",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "20350b48-1f20-4e5b-a954-a690301ffb3a": {
+      "ProjectGuid": "20350b48-1f20-4e5b-a954-a690301ffb3a",
+      "DisplayName": "UnitTests",
+      "ColorIndex": 2
+    },
+    "60fe81dd-097a-46aa-a8b2-40cb4cfbbb4a": {
+      "ProjectGuid": "60fe81dd-097a-46aa-a8b2-40cb4cfbbb4a",
+      "DisplayName": "UnitTests",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
